@@ -152,38 +152,56 @@ const Header = () => {
 		}
 
 		return (
-			<div className={`absolute top-full ${positionClass} transform overflow-x-auto hidden group-hover:grid ${gridCols} bg-white/70 backdrop-blur-md shadow-xl z-50 p-6 gap-6 text-1xl text-gray-800 rounded-lg border border-gray-100 min-w-[1000px] max-w-[90vw]`}>
-				{sections.map((section, i) => (
-					<div key={i}>
-						<div className="font-semibold border-b border-gray-200 pb-2 mb-3 text-red-700">
-							{section.title}
-						</div>
-						<ul className="space-y-2">
-							{section.links.map((link, idx) => (
-								<li
-									key={idx}
-									className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded"
-								>
-									{(link.external || link.url?.startsWith('http') || link.path?.startsWith('http')) ? (
-										<a
-											href={link.path || link.url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="block w-full"
-										>
-											{link.name}
-										</a>
-									) : (
-										<Link to={link.path || link.url} className="block w-full">
-											{link.name}
-										</Link>
-									)}
-								</li>
-							))}
-						</ul>
-					</div>
-				))}
-			</div>
+			<div
+  className={`absolute top-full ${positionClass} transform overflow-x-auto hidden group-hover:block 
+  bg-white/70 backdrop-blur-md shadow-xl z-50 p-6 text-lg text-gray-800 
+  rounded-lg border border-gray-100 min-w-[1000px] max-w-[90vw]`}
+>
+  <div className={`grid ${gridCols} gap-8`}>
+    {sections.map((section, i) => (
+      <div key={i}>
+        <table className="w-full border-collapse">
+          <thead>
+            <tr>
+              <th className="text-left font-semibold border-b border-gray-200 pb-2 mb-3 text-red-700">
+                {section.title}
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {section.links.map((link, idx) => (
+              <tr
+                key={idx}
+                className="hover:bg-[#FB923C] hover:text-white transition-colors duration-200"
+              >
+                <td className="px-2 py-2">
+                  {(link.external ||
+                    link.url?.startsWith("http") ||
+                    link.path?.startsWith("http")) ? (
+                    <a
+                      href={link.path || link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link to={link.path || link.url} className="block w-full">
+                      {link.name}
+                    </Link>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ))}
+  </div>
+</div>
+
 		);
 	};
 
