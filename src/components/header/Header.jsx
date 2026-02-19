@@ -163,7 +163,7 @@ const Header = () => {
         <table className="w-full border-collapse">
           <thead>
             <tr>
-              <th className="text-left font-semibold border-b border-gray-200 pb-2 mb-3 text-red-700">
+              <th className="text-left font-semibold border-b border-gray-300 pb-2 mb-3 text-red-700">
                 {section.title}
               </th>
             </tr>
